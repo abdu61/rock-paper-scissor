@@ -73,9 +73,30 @@ function playRound(player, computer) {
     
 }
 
+function game(){
+    let score = 0;
+    let cscore = 0;
+    for(let i=0; i<5; i++){
+        let comp = getComputerChoice();
+        let player = playerSelection();
+        let result = playRound(player, comp);
+        console.log(result);
+        if(result.includes("win")){
+            score++;
+        }
+        else if(result.includes("lose")){
+            cscore++;
+        }
+    }
+    if (score < cscore){
+        return "You lose the round!";
+    }
+    else if (score > cscore){
+        return "You win the round!";
+    }
+    else{
+        return "It's a tie round!";
+    }
+}
 
-let comp = getComputerChoice();
-console.log(comp);
-console.log(playRound(playerSelection(), comp));
-
-
+console.log(game());
