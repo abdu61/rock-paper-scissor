@@ -10,27 +10,6 @@ function getComputerChoice(){
     }
 }
 
-/*
-function playerSelection() {
-    let playerChoice = prompt("Choose rock, paper or scissors");
-    playerChoice = playerChoice.toLowerCase();
-    if (playerChoice === "rock" || playerChoice === "paper" || playerChoice === "scissors"){
-        return playerChoice;
-    }
-    else {
-        alert("Invalid input");
-        playerSelection();
-    }
-}
-*/
-
-const btn = document.querySelectorAll('button');
-btn.forEach((button) => {
-    button.addEventListener('click', () => {
-        console.log(playRound(button.id, getComputerChoice()));
-    });
-});  
-
 function playRound(player, computer) {
     if(computer === "rock")
     {
@@ -80,34 +59,48 @@ function playRound(player, computer) {
     
 }
 
+let score = 0;
+let cscore = 0;
 
-/*
-function game(){
-    let score = 0;
-    let cscore = 0;
-    for(let i=0; i<5; i++){
-        let comp = getComputerChoice();
-        let player = playerSelection();
-        let result = playRound(player, comp);
-        console.log(result);
-        if(result.includes("win")){
-            score++;
-        }
-        else if(result.includes("lose")){
-            cscore++;
-        }
-    }
-    if (score < cscore){
-        return "You lose the round!";
-    }
-    else if (score > cscore){
-        return "You win the round!";
-    }
-    else{
-        return "It's a tie round!";
-    }
+function getPlayerScore(){
+    return score;
 }
 
+function getComputerScore(){
+    return cscore;
+}
 
-console.log(game());
-*/
+const btn = document.querySelectorAll('.rps');
+const result = document.querySelector('#result');
+const outcome = document.querySelector('#outcome');
+result.textContent = "Player: " + getPlayerScore() + " Computer: " + getComputerScore();
+
+btn.forEach((button) => {
+    button.addEventListener('click', () => {
+        let player = button.id;
+        let comp = getComputerChoice();
+        let round = playRound(player, comp);
+
+        if(round.includes("win")){
+            score++;
+        }
+        else if(round.includes("lose")){
+            cscore++;
+        }
+        outcome.textContent = round;
+        result.textContent = "Player: " + getPlayerScore() + " Computer: " + getComputerScore();
+        if(score == 5){
+            result.textContent = "You win the game!";
+            outcome.textContent = "Choose Your Weapon";
+            score = 0;
+            cscore = 0;
+        }
+        else if(cscore == 5){
+            result.textContent = "You lose the game!";
+            outcome.textContent = "Choose Your Weapon";
+            score = 0;
+            cscore = 0;
+        }
+    });
+});
+
