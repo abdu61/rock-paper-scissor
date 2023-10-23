@@ -10,49 +10,63 @@ function getComputerChoice(){
     }
 }
 
+const computerPlay = document.querySelector('#computerInput');
+const playerPlay = document.querySelector('#playerInput');
 function playRound(player, computer) {
     if(computer === "rock")
     {
+        computerPlay.textContent = "✊";
         if(player === "scissors")
         {
+            playerPlay.textContent = "✌️";
             return "You lose! Rock beats scissors";
         }
         else if(player === "paper")
         {
+            playerPlay.textContent = "✋";
             return "You win! Paper beats rock";
         }
         else
         {
+            playerPlay.textContent = "✊";
             return "It's a tie!";
         }
     }   
     else if(computer === "paper")
     {
+        computerPlay.textContent = "✋";
         if(player === "rock")
         {
+            playerPlay.textContent = "✊";
             return "You lose! Paper beats rock";
         }
         else if(player === "scissors")
         {
+            playerPlay.textContent = "✌️";
             return "You win! Scissors beats paper";
         }
         else
         {
+            playerPlay.textContent = "✋";
             return "It's a tie!";
         }
     }
     else 
     {
+        computerPlay.textContent = "✌️";
         if(player === "paper")
         {
+            playerPlay.textContent = "✋";
             return "You lose! Scissors beats paper";
         }
         else if(player === "rock")
         {
+            playerPlay.textContent = "✊";
             return "You win! Rock beats scissors";
         }
         else
         {
+            playerPlay.textContent = "✌️";
             return "It's a tie!";
         }
     }
@@ -71,9 +85,9 @@ function getComputerScore(){
 }
 
 const btn = document.querySelectorAll('.rps');
-const result = document.querySelector('#result');
 const outcome = document.querySelector('#outcome');
-result.textContent = "Player: " + getPlayerScore() + '\t' + '\t' + " Computer: " + getComputerScore();
+const pScore = document.querySelector('#playerScoreNumber');
+const cScore = document.querySelector('#computerScoreNumber');
 
 btn.forEach((button) => {
     button.addEventListener('click', () => {
@@ -83,31 +97,32 @@ btn.forEach((button) => {
 
         if(round.includes("win")){
             score++;
+            pScore.textContent = score;
         }
         else if(round.includes("lose")){
             cscore++;
+            cScore.textContent = cscore;
         }
         outcome.textContent = round;
-        result.textContent = "Player: " + getPlayerScore() + " Computer: " + getComputerScore();
         resultReset();
     });
 });
 
 function resultReset(){
     if(score == 5){
-        result.textContent = "You win the game!";
         confirm("You Won, Do You want to Play Again?");
         outcome.textContent = "Choose Your Weapon";
         score = 0;
         cscore = 0;
-        result.textContent = "Player: " + getPlayerScore() + " Computer: " + getComputerScore();
+        pScore.textContent = score;
+        cScore.textContent = cscore;
     }
     else if(cscore == 5){
-        result.textContent = "You lose the game!";
         confirm("You Lose, Do you want to Play Again?");
         outcome.textContent = "Choose Your Weapon";
         score = 0;
         cscore = 0;
-        result.textContent = "Player: " + getPlayerScore() + " Computer: " + getComputerScore();
+        pScore.textContent = score;
+        cScore.textContent = cscore;
     }
 }
