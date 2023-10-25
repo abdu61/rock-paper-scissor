@@ -10,6 +10,7 @@ function getComputerChoice(){
     }
 }
 
+
 const computerPlay = document.querySelector('#computerInput');
 const playerPlay = document.querySelector('#playerInput');
 function playRound(player, computer) {
@@ -73,22 +74,15 @@ function playRound(player, computer) {
     
 }
 
+
 let score = 0;
 let cscore = 0;
-
-function getPlayerScore(){
-    return score;
-}
-
-function getComputerScore(){
-    return cscore;
-}
-
 const btn = document.querySelectorAll('.rps');
 const outcome = document.querySelector('#outcome');
 const pScore = document.querySelector('#playerScoreNumber');
 const cScore = document.querySelector('#computerScoreNumber');
 
+/* button funtion that decides the winner\loser of the round and updates the score */
 btn.forEach((button) => {
     button.addEventListener('click', () => {
         let player = button.id;
@@ -104,25 +98,27 @@ btn.forEach((button) => {
             cScore.textContent = cscore;
         }
         outcome.textContent = round;
-        resultReset();
+        if(score == 5 || cscore == 5)
+        {
+            resultReset();
+        }
     });
 });
+
 
 function resultReset(){
     if(score == 5){
         confirm("You Won, Do You want to Play Again?");
-        outcome.textContent = "Choose Your Weapon";
-        score = 0;
-        cscore = 0;
-        pScore.textContent = score;
-        cScore.textContent = cscore;
     }
-    else if(cscore == 5){
+    else{
         confirm("You Lose, Do you want to Play Again?");
-        outcome.textContent = "Choose Your Weapon";
-        score = 0;
-        cscore = 0;
-        pScore.textContent = score;
-        cScore.textContent = cscore;
     }
+
+    outcome.textContent = "Choose Your Weapon";
+    score = 0;
+    cscore = 0;
+    pScore.textContent = score;
+    cScore.textContent = cscore;
+    playerPlay.textContent = "?";
+    computerPlay.textContent = "?";
 }
