@@ -1,6 +1,6 @@
 body{
     margin: 0;
-    color: #ffffff;
+    color: #e3f2ff;
     text-align: center;
     height: 100vh;
     display: flex;
@@ -28,9 +28,8 @@ header h1{
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    color: black;
     font-family: 'Poppins', sans-serif;
-    background-color: #fcf7dc;
+    background-color: #242424;
 }
 
 .buttons{
@@ -42,14 +41,14 @@ header h1{
 button{
     padding: 60px;
     border-radius: 8px;
-    background-color: hsl(0, 100%, 41%);
+    background-color: hsl(0, 0%, 35%);
     border: none;
     font-size: 70px;
     cursor: pointer;
 }
 
 button:hover{
-    background-color: hsl(0, 100%, 31%);
+    background-color: hsl(0, 0%, 60%);
 }
 
 footer{
